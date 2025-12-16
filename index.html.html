@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>تهنئة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#1d4ed8;
+      --purple:#7c3aed;
+      --deep:#060713;
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(225,231,255,.85);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      min-height:100vh;
+      font-family:"Amiri", serif;
+      color:var(--text);
+      background:#070816;
+      overflow-x:hidden;
+    }
+
+    /* ===== خلفية واقعية: صورة طبيعية ===== */
+    .bg{
+      position:fixed; inset:0;
+      background: url("tommy-bg.jpg") center/cover no-repeat;
+      transform: scale(1.06);
+      filter: saturate(1.04) contrast(1.05);
+      z-index:0;
+      will-change: transform;
+    }
+
+    /* Tint بسيط بالأزرق والبنفسجي (واقعي) */
+    .tint{
+      position:fixed; inset:0;
+      background:
+        radial-gradient(circle at 30% 15%, rgba(29,78,216,.18), transparent 58%),
+        radial-gradient(circle at 70% 20%, rgba(124,58,237,.16), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.62));
+      z-index:1;
+      pointer-events:none;
+    }
+
+    /* ظل خفيف للقراءة */
+    .shade{
+      position:fixed; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.66));
+      z-index:2;
+      pointer-events:none;
+    }
+
+    /* ===== نجوم أكثر (طبقتين) ===== */
+    .stars{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:3;
+      opacity:.35;
+      background-image:
+        radial-gradient(2px 2px at 18% 22%, rgba(255,255,255,.65), transparent 60%),
+        radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,.45), transparent 60%),
+        radial-gradient(2px 2px at 85% 65%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,.40), transparent 60%),
+        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,.40), transparent 60%),
+        radial-gradient(2px 2px at 42% 28%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(1px 1px at 92% 18%, rgba(255,255,255,.45), transparent 60%),
+        radial-gradient(1px 1px at 22% 55%, rgba(255,255,255,.40), transparent 60%),
+        radial-gradient(2px 2px at 60% 78%, rgba(255,255,255,.45), transparent 60%);
+      animation: starsDrift 18s ease-in-out infinite;
+      filter: blur(.3px);
+    }
+
+    .stars2{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:3;
+      opacity:.22;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(1px 1px at 28% 32%, rgba(255,255,255,.45), transparent 60%),
+        radial-gradient(1px 1px at 48% 22%, rgba(255,255,255,.40), transparent 60%),
+        radial-gradient(1px 1px at 66% 34%, rgba(255,255,255,.38), transparent 60%),
+        radial-gradient(1px 1px at 82% 26%, rgba(255,255,255,.45), transparent 60%),
+        radial-gradient(1px 1px at 90% 48%, rgba(255,255,255,.40), transparent 60%),
+        radial-gradient(1px 1px at 72% 60%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(1px 1px at 54% 52%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(1px 1px at 36% 64%, rgba(255,255,255,.32), transparent 60%),
+        radial-gradient(1px 1px at 18% 74%, rgba(255,255,255,.30), transparent 60%);
+      filter: blur(.7px);
+      transform: scale(1.2);
+      animation: starsDrift 26s ease-in-out infinite reverse;
+    }
+
+    @keyframes starsDrift{
+      0%,100%{ transform: translateY(0) }
+      50%{ transform: translateY(14px) }
+    }
+
+    /* ===== الشهب ===== */
+    .meteors{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:4;
+      overflow:hidden;
+      opacity:.55;
+    }
+
+    .meteor{
+      position:absolute;
+      top:-20%;
+      left:-35%;
+      width: 280px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(225,231,255,.80), rgba(124,58,237,0));
+      transform: rotate(25deg);
+      filter: blur(.25px);
+      animation: meteor 6.8s linear infinite;
+    }
+
+    .meteor::after{
+      content:"";
+      position:absolute;
+      right: 14px;
+      top: 50%;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.92);
+      transform: translateY(-50%);
+      box-shadow: 0 0 18px rgba(124,58,237,.55);
+    }
+
+    .meteor:nth-child(1){ animation-delay: 0s;   top: 6%;  left:-20%; opacity:.65; }
+    .meteor:nth-child(2){ animation-delay: 1.4s; top: 18%; left:-35%; opacity:.45; }
+    .meteor:nth-child(3){ animation-delay: 2.8s; top: 30%; left:-25%; opacity:.55; }
+    .meteor:nth-child(4){ animation-delay: 4.2s; top: 42%; left:-40%; opacity:.40; }
+    .meteor:nth-child(5){ animation-delay: 5.6s; top: 54%; left:-30%; opacity:.50; }
+
+    @keyframes meteor{
+      0%{ transform: translate3d(0,0,0) rotate(25deg); opacity:0; }
+      8%{ opacity:1; }
+      100%{ transform: translate3d(180vw, 120vh, 0) rotate(25deg); opacity:0; }
+    }
+
+    /* لمعة خفيفة مرة واحدة */
+    .sparkles{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      background-image:
+        radial-gradient(4px 4px at 20% 30%, rgba(255,255,255,.75), transparent 60%),
+        radial-gradient(3px 3px at 60% 40%, rgba(255,255,255,.65), transparent 60%),
+        radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(3px 3px at 80% 60%, rgba(255,255,255,.65), transparent 60%);
+      animation: sparkle 3.1s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes sparkle{
+      0%{ opacity:0; transform: scale(0.985); }
+      30%{ opacity:1; }
+      100%{ opacity:0; transform: scale(1.04); }
+    }
+
+    /* ===== Layout ===== */
+    .wrap{
+      position:relative;
+      z-index:6;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 52px 16px 72px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .card{
+      width: min(860px, 100%);
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      backdrop-filter: blur(10px);
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      overflow:hidden;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: intro 900ms ease forwards;
+    }
+    @keyframes intro{ to{ opacity:1; transform: translateY(0); } }
+
+    .top{
+      padding: 54px 18px 22px;
+      text-align:center;
+    }
+
+    .name{
+      font-family:"Great Vibes", cursive;
+      font-size: clamp(54px, 8vw, 112px);
+      line-height: 1;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,.60);
+      text-shadow:
+        0 0 18px rgba(124,58,237,.28),
+        0 0 38px rgba(29,78,216,.20);
+      display:inline-block;
+      padding: 10px 22px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(10,14,32,.16);
+      opacity:0;
+      transform: translateY(10px);
+      animation: fadeUp 900ms ease 180ms forwards;
+    }
+
+    .subtitle{
+      margin-top: 14px;
+      font-size: 18px;
+      line-height: 2;
+      color: rgba(255,255,255,.88);
+      font-style: italic;
+      padding: 0 12px;
+      opacity:0;
+      transform: translateY(10px);
+      animation: fadeUp 900ms ease 320ms forwards;
+    }
+
+    .sub{
+      margin-top: 8px;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--muted);
+      opacity:0;
+      transform: translateY(10px);
+      animation: fadeUp 900ms ease 460ms forwards;
+      padding: 0 10px;
+    }
+
+    @keyframes fadeUp{ to{ opacity:1; transform: translateY(0); } }
+
+    .content{
+      padding: 18px 20px 30px;
+      display:grid;
+      gap: 14px;
+    }
+
+    .note{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      border-radius: 20px;
+      padding: 16px;
+      line-height: 2;
+      color: rgba(226,232,255,.92);
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      justify-content:center;
+      padding-top: 4px;
+    }
+
+    .btn{
+      border: 1px solid rgba(255,255,255,.16);
+      background: linear-gradient(135deg, rgba(29,78,216,.55), rgba(124,58,237,.55));
+      color: rgba(255,255,255,.95);
+      padding: 11px 16px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-size: 16px;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      box-shadow: 0 16px 30px rgba(0,0,0,.35);
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      user-select:none;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn::before{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-60%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: rotate(22deg);
+      animation: shine 4.8s ease-in-out infinite;
+      opacity:.85;
+    }
+    @keyframes shine{
+      0%{ transform: translateX(-120%) rotate(22deg); opacity:0; }
+      18%{ opacity:.9; }
+      40%{ opacity:.55; }
+      100%{ transform: translateX(260%) rotate(22deg); opacity:0; }
+    }
+
+    .btn:hover{
+      transform: translateY(-1px) scale(1.02);
+      filter: brightness(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,.45);
+    }
+    .btn:active{ transform: translateY(1px) scale(.99); }
+
+    .sig{
+      text-align:center;
+      padding: 8px 10px 24px;
+      color: rgba(199,210,254,.92);
+      font-size: 18px;
+      line-height: 2;
+    }
+    .sig .k{
+      display:inline-block;
+      margin-top: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.92);
+    }
+
+    /* ===== Modal: رسالة طويلة + قصيدة ===== */
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      place-items:center;
+      padding: 18px;
+      background: rgba(0,0,0,.62);
+      backdrop-filter: blur(7px);
+      z-index: 999;
+      opacity:0;
+      transition: opacity .22s ease;
+    }
+    .modal.show{ display:grid; opacity:1; }
+
+    .panel{
+      width: min(920px, 100%);
+      max-height: min(82vh, 760px);
+      overflow:hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      box-shadow: 0 30px 90px rgba(0,0,0,.62);
+      transform: translateY(14px) scale(.985);
+      opacity:0;
+      transition: transform .22s ease, opacity .22s ease;
+    }
+    .modal.show .panel{ transform: translateY(0) scale(1); opacity:1; }
+
+    .panelHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
+      background: rgba(0,0,0,.16);
+    }
+    .panelHead h3{ font-size: 18px; font-weight: 700; }
+
+    .close{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.9);
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+    }
+
+    .panelBody{
+      padding: 16px 18px 18px;
+      color: rgba(226,232,255,.94);
+      line-height: 2.05;
+      overflow:auto;
+      max-height: calc(min(82vh, 760px) - 54px);
+    }
+
+    .msg{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      border-radius: 18px;
+      padding: 14px 14px;
+    }
+
+    .msg p{
+      margin-bottom: 12px;
+      font-size: 17px;
+      color: rgba(235,240,255,.94);
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.12);
+      margin: 14px 0 16px;
+    }
+
+    .poemTitle{
+      text-align:center;
+      color: rgba(255,255,255,.92);
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 0 18px rgba(124,58,237,.20);
+    }
+
+    .poem{
+      text-align:center;
+      font-size: 20px;
+      line-height: 2.25;
+      color: rgba(226,232,255,.96);
+      padding-bottom: 10px;
+    }
+    .poem .line{ margin: 6px 0; }
+
+    @media (max-width: 640px){
+      .subtitle{ font-size: 17px; }
+      .msg p{ font-size: 16px; }
+      .poem{ font-size: 18px; }
+      .wrap{ padding-top: 44px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" id="bg"></div>
+  <div class="tint"></div>
+  <div class="shade"></div>
+
+  <div class="stars"></div>
+  <div class="stars2"></div>
+
+  <div class="meteors">
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+    <div class="meteor"></div>
+  </div>
+
+  <div class="sparkles"></div>
+
+  <div class="wrap">
+    <section class="card">
+      <div class="top">
+        <div class="name">Tommy</div>
+
+        <div class="subtitle">
+          كل سنة وأنتِ طيبة… أتمنى أن يكون عامك أجمل من كل ما مضى 🎂
+        </div>
+
+        <div class="sub">
+          
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="note">
+         
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="btnOpen">✨ افتحي الرسالة</button>
+        </div>
+
+        <div class="sig">
+          <div>مع خالص التمنّي لكِ بالخير دائمًا…</div>
+          <div class="k">— خالد</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal: رسالة طويلة + قصيدة -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="رسالة عيد ميلاد">
+    <div class="panel">
+      <div class="panelHead">
+        <h3>🎈</h3>
+        <button class="close" id="btnClose">إغلاق</button>
+      </div>
+
+      <div class="panelBody">
+        <div class="msg">
+          <p>
+            كل سنة وأنتِ طيبة يا <b>Tommy</b>…  
+            النهاردة مش يوم عادي؛ النهاردة يوم اتولدت فيه روح جميلة، وده وحده سبب كفاية إن اليوم يبقى أخف وأهدى وألطف.
+          </p>
+
+          <p>
+            أتمنى لكِ سنة جديدة تكون فيها راحتك هي الأولوية،  
+            وسعادتك مش مؤجّلة،  
+            وكل شيء يليق بكِ ييجي لك من غير تعب كبير… ومن غير انتظار طويل.
+          </p>
+
+          <p>
+            أتمنى يكون حواليك ناس تفرّحك بصدق،  
+            وتفهمك من غير ما تشرحي كتير،  
+            وتشيل عنك اللي تقيل بدل ما تزوده.
+          </p>
+
+          <p>
+            لو في أمنية واحدة أتمنى تتحقق لك… فهي “الطمأنينة”.  
+            الطمأنينة اللي تخلي قلبك ثابت، ونفسك هادية، وخطوتك واثقة… حتى لو الدنيا اتغيّرت.
+          </p>
+
+          <p>
+            وفي يوم زي ده… أحب أقول لك:  
+            شكرًا لأنك كنتِ لحظة جميلة في حياتي،  
+            وشكرًا لأن وجودك علّمني إن بعض المشاعر ممكن تكون نقيّة حتى لو ما اكتملتش.
+          </p>
+
+          <p>
+            أتمنى لكِ نجاح يفرّحك، وأيام تُشبه قلبك،  
+            وابتسامة تفضلّك… وتفضل فيك.
+          </p>
+
+          <div class="divider"></div>
+
+          <div class="poemTitle">والآن… القصيدة</div>
+
+          <div class="poem">
+            <div class="line">رأيتُ وجهَ الحبيبِ فكانا</div>
+            <div class="line">هلالينِ عندَ النظر</div>
+            <div class="line">ولم أدرِ من حيرتي فيهما</div>
+            <div class="line">هلالُ الدجى من هلالِ البشر</div>
+            <div class="line" style="margin-top:12px;"></div>
+            <div class="line">فلولا التورّدُ في الوجنتين</div>
+            <div class="line">وما هالني من سوادِ الشعر</div>
+            <div class="line">لكنتُ أظنُّ الهلالَ الحبيب</div>
+            <div class="line">وكنتُ أظنُّ الحبيبَ القمر</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <p style="margin-bottom:0; text-align:center; color: rgba(199,210,254,.92);">
+            — خالد
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Parallax طبيعي خفيف على الصورة (واقعي)
+    const bg = document.getElementById("bg");
+    function setParallax(dx, dy){
+      const x = dx * 7;
+      const y = dy * 5;
+      bg.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.08)`;
+    }
+    window.addEventListener("mousemove", (e)=>{
+      const w = window.innerWidth, h = window.innerHeight;
+      const dx = (e.clientX / w - 0.5) * 2;
+      const dy = (e.clientY / h - 0.5) * 2;
+      setParallax(dx, dy);
+    }, {passive:true});
+
+    // Modal open/close
+    const modal = document.getElementById("modal");
+    document.getElementById("btnOpen").addEventListener("click", ()=> modal.classList.add("show"));
+    document.getElementById("btnClose").addEventListener("click", ()=> modal.classList.remove("show"));
+    modal.addEventListener("click", (e)=>{ if(e.target === modal) modal.classList.remove("show"); });
+    window.addEventListener("keydown", (e)=>{ if(e.key === "Escape") modal.classList.remove("show"); });
+
+    // تحذير لو الصورة مش موجودة
+    const testImg = new Image();
+    testImg.src = "tommy-bg.jpg";
+    testImg.onerror = () => console.warn("ضع tommy-bg.jpg بجانب index.html حتى تعمل الخلفية الواقعية.");
+  </script>
+</body>
+</html>
+
